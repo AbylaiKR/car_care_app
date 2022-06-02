@@ -1,0 +1,19 @@
+{%extends "base_generic.html"%}
+{% block content %}
+<section class="inner_block_content">
+    <div class="content">
+        <h1>Сars</h1>
+        {% if car_brand_list %}
+        <ul>
+            {% for car_brand in car_brand_list %}
+            <li>
+                <a href="#">{{ car_brand.brand_name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>There are no cars in the database.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

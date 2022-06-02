@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class car_engine(models.Model):
 
@@ -12,15 +12,13 @@ class car_engine(models.Model):
 
 
 class car_transmission(models.Model):
-
     name = models.CharField(max_length=10, help_text='Enter the car transmission')
     steps_number = models.IntegerField(help_text='Enter the car transmission number of steps')
 
     def __str__(self):
-        return  f'{self.name} {self.steps_number}'
+        return f'{self.name} {self.steps_number}'
 
 class car_modification(models.Model):
-
     name = models.CharField(max_length=150, help_text='Enter the car model modification name')
     engine = models.ForeignKey(car_engine, on_delete=models.SET_NULL, null=True)
     transmission = models.ForeignKey(car_transmission, on_delete=models.SET_NULL, null=True)
@@ -30,17 +28,17 @@ class car_modification(models.Model):
 
 
 class inner_car_model(models.Model):
-
     image = models.ImageField()
     inner_model_name = models.CharField(max_length=100, help_text='Enter the inner car model')
-    production_year = models.DateField(help_text='Select the year of manufacture of the car model')
+    start_production_year = models.IntegerField(help_text='Enter the year of manufacture of the car model')
+    end_production_year = models.IntegerField(help_text='Enter the year of the end of the car model release')
     car_modification = models.ManyToManyField(car_modification, help_text='Select a car modification')
 
     def __str__(self):
-        return f'{self.image} {self.inner_model_name} {self.production_year}'
+        return f'{self.image} {self.inner_model_name} {self.start_production_year} {self.end_production_year}'
+
 
 class car_body(models.Model):
-
     name = models.CharField(max_length=150, help_text='Enter the car body name')
     inner_car_model = models.ManyToManyField(inner_car_model, help_text='Select inner car model')
 
@@ -54,7 +52,6 @@ class car_body(models.Model):
 
 
 class car_model(models.Model):
-
     model_name = models.CharField(max_length=100, help_text='Enter the car model')
     car_body = models.ManyToManyField(car_body, help_text='Select a car body')
 
@@ -68,10 +65,9 @@ class car_model(models.Model):
 
 
 class car_brand(models.Model):
-
     brand_name = models.CharField(max_length=50, help_text='Enter the car brand')
     car_model = models.ManyToManyField(car_model)
-
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return self.brand_name
 

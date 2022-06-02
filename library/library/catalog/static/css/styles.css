@@ -7,9 +7,28 @@
     margin: 0 auto;
 }
 
+.block_content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-top: 100px;
+}
 
-.content{
+.sidebar .content{
     border: 2px solid black;
     height: 500px;
     padding: 20px;
+    margin: 10px;
+    min-width: 200px;
+    width: 100%;
+}
+
+.inner_block_content .content{
+    border: 2px solid black;
+    height: 500px;
+    padding: 20px;
+    margin: 10px;
+    min-width: 1000px;
+    width: 100%;
 }

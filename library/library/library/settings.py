@@ -87,9 +87,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {
-            'options': '-c search_path=car_cape'
+            'options': '-c search_path=car_app'
         },
-        'NAME': 'car_cape_db',
+        'NAME': 'car_app_db',
         'USER': 'itstep-admin',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
